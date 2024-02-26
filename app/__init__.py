@@ -1,14 +1,13 @@
-import os
-
-from dotenv import load_dotenv
 from flask import Flask
+from dotenv import load_dotenv
 from flask_migrate import Migrate
-
 from app.database import db
 from app.error_handlers import register_error_handlers
-from app.event.views import event
+from app.event.views import event, EventListView, EventDetailView
 from app.main.views import main
-from app.user.views import user
+from app.user.views import user, UserListView, UserDetailView
+
+import os
 
 app = Flask(__name__)
 load_dotenv()
@@ -35,8 +34,11 @@ app.register_blueprint(event)
 app.register_blueprint(user)
 app.register_blueprint(main)
 
+# Class-based rules for task 40
+app.add_url_rule('/class/users/', view_func=UserListView.as_view('user_list'))
+app.add_url_rule('/class/users/<int:id>/', view_func=UserDetailView.as_view('user_detail'))
+app.add_url_rule('/class/events/', view_func=EventListView.as_view('event_list'))
+app.add_url_rule('/class/events/<int:id>/', view_func=EventDetailView.as_view('event_detail'))
 # Error handlers
 register_error_handlers(app)
-
-if __name__=='__main__':
-    app.run()
+print(app.config.get('DEBUG'))

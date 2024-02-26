@@ -1,5 +1,6 @@
 import sqlalchemy
 from flask import Blueprint, render_template, request, redirect, url_for, flash
+from flask.views import MethodView
 
 from app import db
 from app.decorators import login_required
@@ -8,6 +9,20 @@ from app.user.models import User
 
 # Users block
 user = Blueprint('user', __name__)
+
+
+# Class based views for task 40
+class UserListView(MethodView):
+    def get(self):
+        users = User.query.all()
+        return render_template('class/list.html', items=users, type='user')
+
+
+class UserDetailView(MethodView):
+    def get(self, id):
+        user = User.query.get_or_404(id)
+        print(user)
+        return render_template('class/detail.html', item=user, type='user')
 
 
 @user.get('/users/')
@@ -21,12 +36,12 @@ def get_users():
     size = request.args.get('size', type=int, default=0)
     pagination = User.query.paginate(page=page, per_page=size, error_out=False)
     users = [{'id': item.id, 'username': item.username} for item in pagination]
-    vars = {
+    var_s = {
         'pagination': pagination,
         'users': users,
         'size': size,
     }
-    return render_template('user/list.html', **vars)
+    return render_template('user/list.html', **var_s)
 
 
 @user.route('/register/', methods=['GET', 'POST'])

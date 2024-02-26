@@ -2,6 +2,7 @@ import datetime
 
 import jwt
 from flask import Blueprint, request, jsonify, render_template, flash, redirect, url_for, session
+from flask.views import MethodView
 
 from app import db
 from app.config import SECRET_KEY
@@ -13,6 +14,19 @@ from app.user.models import User
 
 # Events block
 event = Blueprint('event', __name__)
+
+
+# Class based views for task 40
+class EventListView(MethodView):
+    def get(self):
+        events = Event.query.all()
+        return render_template('class/list.html', items=events, type='event')
+
+
+class EventDetailView(MethodView):
+    def get(self, id):
+        event = Event.query.get_or_404(id)
+        return render_template('class/detail.html', item=event, type='event')
 
 
 @event.route('/create/', methods=['POST', 'GET'])
