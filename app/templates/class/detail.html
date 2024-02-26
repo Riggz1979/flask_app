@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="container">
+        <h1 class="list_header">{{ type|capitalize }} Detail</h1>
+        {% if type == 'user' %}
+            <p>ID: {{ item.id }}</p>
+            <p>Username: {{ item.username }}</p>
+            <p>First name: {{ item.first_name }}</p>
+            <p>Last name: {{ item.last_name }}</p>
+        {% else %}
+            <p>ID: {{ item.id }}</p>
+            <p>Description: {{ item.description }}</p>
+            <p>Created by: <a href=
+                                      "{{ url_for('user_detail', id=item.user.id) }}">{{ item.user.username }}</a></p>
+            <p>Begin at: {{ item.begin_at }}</p>
+            <p>End at: {{ item.end_at }}</p>
+            <p>Max users: {{ item.max_users }}</p>
+            <p>Active: {{ 'Yes' if item.is_active == True else 'No' }}</p>
+        {% endif %}
+    </div>
+{% endblock %}

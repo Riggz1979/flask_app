@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="container">
+    <h1 class="list_header">{{ type|capitalize }}s List</h1>
+    <ul>
+    {% for item in items %}
+        <li>
+            <a href="{{ url_for(type + '_detail', id=item.id) }}">{{ item.username if type == 'user' else item.description }}</a>
+        </li>
+    {% endfor %}
+    </ul>
+    </div>
+{% endblock %}
