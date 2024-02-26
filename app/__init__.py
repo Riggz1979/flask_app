@@ -21,7 +21,7 @@ WTF_CSRF_ENABLED = os.getenv('WTF_CSRF_ENABLED')
 app.config['SECRET_KEY'] = SECRET_KEY
 app.config['DEBUG'] = DEBUG
 app.config['PORT'] = PORT
-app.config['WTF_CSRF_ENABLED'] = WTF_CSRF_ENABLED
+app.config['WTF_CSRF_ENABLED'] = False
 
 # Database connection
 app.config['SQLALCHEMY_DATABASE_URI'] = DATABASE
