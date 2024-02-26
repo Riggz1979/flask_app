@@ -37,4 +37,6 @@ app.register_blueprint(main)
 
 # Error handlers
 register_error_handlers(app)
-print(app.config.get('DEBUG'))
+
+if __name__=='__main__':
+    app.run()
