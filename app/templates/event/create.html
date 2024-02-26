@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+
+
+{% block content %}
+    <div class="container">
+        <h1 class="list_header">Create event:</h1>
+        <form action="/create/" method="POST">
+            {{ form.description.label }} {{ form.description() }}<br>
+            {{ form.begin_at.label }} {{ form.begin_at() }}<br>
+            {{ form.end_at.label }} {{ form.end_at() }}<br>
+            {{ form.max_users.label }} {{ form.max_users() }}<br>
+            {{ form.is_active.label }} {{ form.is_active() }}<br>
+            <button type="submit"> Create</button>
+        </form>
+        {% if form.errors %}
+            <p>{{ form.errors }}</p>
+        {% endif %}
+    </div>
+{% endblock %}

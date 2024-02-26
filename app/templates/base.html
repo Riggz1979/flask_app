@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
+    <title>robot</title>
+</head>
+<body>
+{% if session['username'] %}
+    <h2 class="logged"> Welcome, {{ session['full_name'] }}!</h2>
+{% else %}
+    <h2 class="anon">You need to log in!</h2>
+{% endif %}
+{% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        {% for category, message in messages %}
+            <div class="flash-{{ category }}">{{ message }}</div>
+        {% endfor %}
+    {% endif %}
+{% endwith %}
+{% block content %}{% endblock %}
+</body>
+</html>

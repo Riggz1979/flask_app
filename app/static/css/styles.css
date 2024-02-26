@@ -1,0 +1,111 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 20px;
+}
+
+.container {
+    width: 30%;
+    margin: auto;
+    background: darkgoldenrod;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+input[type="text"], input[type="password"] {
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+button {
+    width: 30%;
+    align-self: center;
+    padding: 10px 20px;
+    background-color: #0056b3;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+
+.anon {
+    text-align: center;
+    color: crimson;
+}
+
+.logged {
+    text-align: center;
+    color: darkgreen;
+}
+
+.list_header {
+    text-align: center;
+    color: darkgreen;
+}
+
+.flash-danger {
+    color: crimson;
+    text-align: center;
+    font-size: xx-large;
+}
+
+.flash-success {
+    color: darkgreen;
+    text-align: center;
+    font-size: xx-large;
+}
+
+.join-button {
+    align-self: center;
+    width: 30%;
+    margin: 20px;
+    padding: 10px 20px;
+    background-color: #0056b3;
+    color: white;
+    border: none;
+    border-radius: 4px;
+}
+
+.search {
+    width: 20%;
+
+}
+
+.search_field {
+    width: 70%;
+    background-color: #f4f4f4;
+}
+
+.page_form {
+    align-items: center;
+}
+
+.size_field {
+    text-align: center;
+    width: 50px;
+    height: 25px;
+    border-radius: 2px;
+    background-color: #f4f4f4;
+
+
+}
+
+.pagination {
+    text-align: center;
+}
+
+.size_button {
+    width: 55px;
+    border-radius: 4px;
+
+}

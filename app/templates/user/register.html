@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+
+
+{% block content %}
+    <div class="container">
+        <h1 class="list_header">User registration</h1>
+        <form action="/register" method="POST">
+            {{ form.csrf_token }}
+            {{ form.first_name.label }} {{ form.first_name() }}<br>
+            {{ form.last_name.label }} {{ form.last_name() }}<br>
+            {{ form.username.label }} {{ form.username() }}<br>
+            {{ form.password.label }} {{ form.password() }}<br>
+            <button type="submit"> Register</button>
+        </form>
+        {% if form.errors %}
+            <p>{{ form.errors }}</p>
+        {% endif %}
+    </div>
+{% endblock %}

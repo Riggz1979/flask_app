@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+
+
+{% block content %}
+    <div class="container">
+        <h2>Main page:</h2>
+        <a href="{{ url_for('event.get_events') }}">Events list</a><br>
+        <a href="{{ url_for('event.create_event') }}">Create event</a><br>
+        <a href="{{ url_for('user.get_users') }}">Users list</a><br><br><br><br>
+        <footer>
+            <a href="{{ url_for('main.logout') }}">Logout</a>
+        </footer>
+
+    </div>
+{% endblock %}

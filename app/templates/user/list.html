@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+
+
+{% block content %}
+    <div class="container">
+        <h1 class="list_header">Users list</h1>
+
+        {% for item in users %}
+            <p>
+                {{ item.id }}. - {{ item.username }}
+            </p>
+        {% endfor %}
+        {% if pagination %}
+            <form class="page_form" action="{{ url_for('user.get_users') }}" method="get">
+                <label>
+                    <input class="size_field" type="number" name="size" min="1"> Items per page
+                    <button class="size_button" type="submit">Ok</button>
+                </label>
+            </form>
+
+
+            <nav aria-label="Pagination">
+                <ul class="pagination">
+                    {% for page_num in pagination.iter_pages() %}
+                        {% if page_num %}
+                            {% if page_num != pagination.page %}
+                                <a class="page-link"
+                                   href="{{ url_for('user.get_users', page=page_num, size=size) }}">{{ page_num }}</a>
+                            {% else %}
+                                {{ page_num }}
+                            {% endif %}
+                        {% else %}
+                            ...
+                        {% endif %}
+                    {% endfor %}
+
+                </ul>
+            </nav>
+        {% endif %}
+    </div>
+{% endblock %}

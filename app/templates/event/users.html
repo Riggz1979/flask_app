@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+
+
+{% block content %}
+    <div class="container">
+        <h1 class="list_header">{{ id }} Events users list:</h1>
+
+        {% for user in event_users %}
+
+            <ul>
+                {{ user.id }}. - {{ user.username }}
+            </ul>
+        {% endfor %}
+    </div>
+{% endblock %}

@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+
+
+{% block content %}
+    <div class="container">
+        <h1 class="list_header">{{ title }}:</h1>
+        <form class="search_form" action="{{ url_for('event.search_event') }}" method="get">
+            <label>
+                <input class="search_field" type="text" name="query" placeholder="Search by title...">
+                <button class="search" type="submit">Search</button>
+            </label>
+        </form>
+        {% for event in events %}
+            <li>
+                <a href="{{ url_for('event.get_event_by_id', id = event.id) }}">
+                    {{ event.id }}. - {{ event.description }}
+                </a>
+            </li>
+        {% endfor %}
+        <br><br><br>
+        {% if pagination %}
+            <form class="page_form" action="{{ url_for('event.get_events') }}" method="get">
+                <label>
+                    <input class="size_field" type="number" name="size" min="1"> Items per page
+                    <button class="size_button" type="submit">Ok</button>
+                </label>
+            </form>
+
+
+            <nav aria-label="Pagination">
+                <ul class="pagination">
+
+                    {% for page_num in pagination.iter_pages() %}
+                        {% if page_num %}
+                            {% if page_num != pagination.page %}
+                                <a class="page-link"
+                                   href="{{ url_for('event.get_events', page=page_num, size=size) }}">{{ page_num }}</a>
+                            {% else %}
+                                {{ page_num }}
+                            {% endif %}
+                        {% else %}
+                            ...
+                        {% endif %}
+                    {% endfor %}
+
+                </ul>
+            </nav>
+        {% endif %}
+    </div>
+{% endblock %}
